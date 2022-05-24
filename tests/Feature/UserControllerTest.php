@@ -19,6 +19,13 @@ class UserControllerTest extends TestCase
             ->assertSee('Izzy');
     }
 
+    public function testIndexEmpty()
+    {
+        $this->get('/user?empty')
+            ->assertStatus(200)
+            ->assertSee('There are not registered users.');
+    }
+
     public function testNew()
     {
         $this->get('/user/new')
