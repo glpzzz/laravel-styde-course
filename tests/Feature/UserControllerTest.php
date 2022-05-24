@@ -11,7 +11,12 @@ class UserControllerTest extends TestCase
     {
         $this->get('/user')
             ->assertStatus(200)
-            ->assertSee('Users');
+            ->assertSee('Users')
+            ->assertSee('Axl')
+            ->assertSee('Slash')
+            ->assertSee('Duff')
+            ->assertSee('Matt')
+            ->assertSee('Izzy');
     }
 
     public function testNew()
