@@ -1,24 +1,18 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return "Hello World";
 });
 
-Route::get('/users', function () {
-    return "Users";
+Route::controller(UserController::class)->group(function () {
+    Route::get('/user', 'index');
+    Route::get('/user/new', 'new');
+    Route::get('/user/{id}', 'show')->where(['id', '[\d]+']);
 });
 
-Route::get('/users/{id}', function ($id) {
-    return "Details of user $id";
-})->where('id', '[\d]+');
-
-Route::get('/users/new', function () {
-    return "New User";
-});
-
-Route::get('greeting/{name}/{nickname?}', function ($name, $nickname = null) {
-    $name = ucfirst($name);
-    return "Hello $name. " . ($nickname !== null ? "Your nickname is $nickname." : '');
-});
+Route::get('greeting/{name}', [WelcomeUserController::class, 'greetingWithoutNickname']);
+Route::get('greeting/{name}/{nickname}', [WelcomeUserController::class, 'greetingWithNickname']);

@@ -2,11 +2,9 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class WelcomeModuleTest extends TestCase
+class WelcomeUserControllerTest extends TestCase
 {
     public function test_welcome_users_with_nickname()
     {
